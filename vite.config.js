@@ -6,6 +6,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
+  base: '/', 
   server: {
     host: true
   }
