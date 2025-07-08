@@ -13,7 +13,7 @@ const EditarCurso = () => {
 
 useEffect(() => {
   const fetchFormadores = async () => {
-    const res = await fetch(`http://localhost:3000/gestor/formadores`, {
+    const res = await fetch(`https://projeto-back-zsio.onrender.com/gestor/formadores`, {
       credentials: "include"
     });
     const data = await res.json();
@@ -29,7 +29,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchCurso = async () => {
     try {
-      const resCurso = await fetch(`http://localhost:3000/gestor/cursos/${id}`, {
+      const resCurso = await fetch(`https://projeto-back-zsio.onrender.com/gestor/cursos/${id}`, {
         credentials: 'include'
       });
       if (!resCurso.ok) {
@@ -98,7 +98,7 @@ useEffect(() => {
     };
 
     try {
-      const resCurso = await fetch(`http://localhost:3000/gestor/cursos/${id}`, {
+      const resCurso = await fetch(`https://projeto-back-zsio.onrender.com/gestor/cursos/${id}`, {
         credentials: 'include',
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -108,7 +108,7 @@ useEffect(() => {
       if (!resCurso.ok) throw new Error("Erro ao atualizar curso.");
 
       if (curso.Tipo_Curso === "assíncrono") {
-        const resModulos = await fetch(`http://localhost:3000/gestor/cursos/${id}/list`, {
+        const resModulos = await fetch(`https://projeto-back-zsio.onrender.com/gestor/cursos/${id}/list`, {
           credentials: "include",
           method: "PUT",
           headers: { "Content-Type": "application/json" },

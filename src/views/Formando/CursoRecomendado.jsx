@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../axiosConfig.js";
+import api from "../../axiosConfig.js";
 import { useParams } from "react-router-dom";
 import "../../styles/CursoRecomendado.css";
 
@@ -12,12 +12,12 @@ const CursoRecomendado = () => {
   useEffect(() => {
     const fetchCurso = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/cursos/${cursoId}`);
+        const res = await api.get(`/cursos/${cursoId}`);
         setCurso(res.data);
 
         // Verificar se o utilizador já está inscrito
-        const dashboard = await axios.get(
-          "http://localhost:3000/formando/dashboard",
+        const dashboard = await api.get(
+          "/formando/dashboard",
           {
             withCredentials: true,
           }
@@ -41,7 +41,7 @@ const CursoRecomendado = () => {
     if (!confirmar) return;
 
     try {
-      await axios.post(`/inscricoes`, { ID_Curso: cursoId });
+      await api.post(`/inscricoes`, { ID_Curso: cursoId });
       alert("Inscrição realizada com sucesso!");
       setJaInscrito(true);
     } catch (err) {

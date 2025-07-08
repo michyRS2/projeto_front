@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import PerfilCard from '../components/PerfilCard.jsx';
 import '../styles/Perfil.css';
-import axios from '../axiosConfig';
+import api from '../axiosConfig.js';
 import { useNavigate } from 'react-router-dom';
 
 const Perfil = () => {
@@ -30,7 +30,7 @@ const Perfil = () => {
                 setLoadingStats(true);
                 setError('');
 
-                const response = await axios.get('/perfil');
+                const response = await api.get('/perfil');
                 setUserEmail(response.data.Email);
                 setStats({
                     completedCourses: response.data.completedCourses || 0,

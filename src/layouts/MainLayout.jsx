@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import { FaBars, FaBell, FaUser, FaSearch } from "react-icons/fa";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import axios from "../axiosConfig.js";
+import api from "../axiosConfig.js";
 import { FiLogOut } from "react-icons/fi";
 
 import "../styles/MainLayout.css";
@@ -29,8 +29,8 @@ const MainLayout = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post(
-        "http://localhost:3000/logout",
+      await api.post(
+        "/logout",
         {},
         { withCredentials: true }
       );
@@ -62,11 +62,8 @@ const MainLayout = () => {
     if (searchTerm.length > 1) {
       const fetchCourses = async () => {
         try {
-          const response = await axios.get(
-            `http://localhost:3000/cursos/search?query=${encodeURIComponent(
-              searchTerm
-            )}`
-          );
+          const response = await api.get(`/cursos/search?query=${encodeURIComponent(searchTerm)}`);
+
           setSearchResults(response.data);
           setShowResults(true);
         } catch (err) {

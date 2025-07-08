@@ -44,7 +44,7 @@ const ModulosAulas = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:3000/gestor/cursos/${cursoId}/modulos`, {
+      const res = await fetch(`https://projeto-back-zsio.onrender.com/gestor/cursos/${cursoId}/modulos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -25,14 +25,14 @@ const NovoCurso = () => {
   const [formadorId, setFormadorId] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/categorias")
+    fetch("https://projeto-back-zsio.onrender.com/categorias")
       .then(res => res.json())
       .then(data => setCategorias(data));
   }, []);
 
   useEffect(() => {
     if (categoriaId) {
-      fetch(`http://localhost:3000/areas?categoriaId=${categoriaId}`)
+      fetch(`https://projeto-back-zsio.onrender.com/areas?categoriaId=${categoriaId}`)
         .then(res => res.json())
         .then(data => setAreas(data));
     }
@@ -40,7 +40,7 @@ const NovoCurso = () => {
 
   useEffect(() => {
     if (areaId) {
-      fetch(`http://localhost:3000/topicos?areaId=${areaId}`)
+      fetch(`https://projeto-back-zsio.onrender.com/topicos?areaId=${areaId}`)
         .then(res => res.json())
         .then(data => setTopicos(data));
     }
@@ -48,7 +48,7 @@ const NovoCurso = () => {
 
   useEffect(() => {
     if (tipo === "síncrono") {
-      fetch("http://localhost:3000/gestor/formadores", {
+      fetch("https://projeto-back-zsio.onrender.com/gestor/formadores", {
         credentials: 'include'
       })
         .then(res => {
@@ -90,7 +90,7 @@ const NovoCurso = () => {
     const novoCurso = tipo === "síncrono" ? dadosSincrono : dadosAssincrono;
 
     try {
-      const res = await fetch("http://localhost:3000/gestor/cursos", {
+      const res = await fetch("https://projeto-back-zsio.onrender.com/gestor/cursos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: 'include',

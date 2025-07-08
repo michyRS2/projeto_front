@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "./axiosConfig";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import MainLayout from "./layouts/MainLayout";
@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/auth/check", {
+        const res = await api.get("/auth/check", {
           withCredentials: true,
         });
         if (res.status === 200) {

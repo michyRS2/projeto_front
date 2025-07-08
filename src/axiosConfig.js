@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Configurar a instância base do Axios
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://projeto-back-zsio.onrender.com",
     withCredentials: true, // Isso é crucial para enviar cookies
 });
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../axiosConfig";
 import { Link, useNavigate } from "react-router-dom";
 import EstatisticaBox from "../../components/EstatisticaBox";
 import CursoCardGestor from "../../components/CursoCardGestor";
@@ -15,11 +15,11 @@ const DashboardGestor = () => {
 
     const fetchDados = async () => {
       try {
-        const resStats = await axios.get("http://localhost:3000/gestor/dashboard", {
+        const resStats = await api.get("/gestor/dashboard", {
           withCredentials: true,
         });
 
-        const resCursos = await axios.get("http://localhost:3000/gestor/cursos", {
+        const resCursos = await api.get("/gestor/cursos", {
           withCredentials: true,
         });
 
@@ -42,7 +42,7 @@ const DashboardGestor = () => {
   const handleEliminarCurso = async (curso) => {
     if (window.confirm(`Confirmar eliminação do curso "${curso.Nome_Curso}"?`)) {
       try {
-        await axios.delete(`http://localhost:3000/gestor/cursos/${curso.ID_Curso}`, {
+        await api.delete(`/gestor/cursos/${curso.ID_Curso}`, {
           withCredentials: true
         });
         setCursos(cursos.filter((c) => c.ID_Curso !== curso.ID_Curso));

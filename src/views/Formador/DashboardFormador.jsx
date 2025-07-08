@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CursoCardFormador from "../../components/CursoCardFormador";
+import api from "../../axiosConfig";
 
 const DashboardFormador = () => {
   const [cursos, setCursos] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:3000/formador/dashboard", { withCredentials: true })
+    api.get("/formador/dashboard")
+
       .then(res => setCursos(res.data.cursosDoFormador || []))
       .catch(err => console.error("Erro ao carregar cursos:", err));
   }, []);

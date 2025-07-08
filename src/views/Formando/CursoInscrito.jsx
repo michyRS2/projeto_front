@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../axiosConfig.js";
+import api from "../../axiosConfig.js";
 import { useParams } from "react-router-dom";
 import "../../styles/CursoRecomendado.css";
 
@@ -9,8 +9,8 @@ const CursoInscrito = () => {
   const [modulosAbertos, setModulosAbertos] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/cursos/${cursoId}`)
+    api
+      .get(`/cursos/${cursoId}`)
       .then((res) => {
         console.log("Curso inscrito recebido:", res.data);
         setCurso(res.data);

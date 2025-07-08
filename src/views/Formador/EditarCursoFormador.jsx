@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import api from "../../axiosConfig";
+
 
 const EditarCursoFormador = () => {
   const { id } = useParams();
@@ -11,12 +13,8 @@ const EditarCursoFormador = () => {
   useEffect(() => {
     const fetchCurso = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:3000/formador/editar-curso/${id}`,
-          {
-            credentials: "include",
-          }
-        );
+        const res = await api.get(`/formador/editar-curso/${id}`);
+
         const data = await res.json();
         setCurso(data);
 
@@ -88,19 +86,12 @@ const EditarCursoFormador = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `http://localhost:3000/formador/editar-curso/${id}/list`,
-        {
-          method: "PUT",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            Objetivos: curso.Objetivos || [],
-            Includes: curso.Includes || [],
-            Modulos: modulos || [],
-          }),
-        }
-      );
+      const res = await api.put(`/formador/editar-curso/${id}/list`, {
+  Objetivos: curso.Objetivos || [],
+  Includes: curso.Includes || [],
+  Modulos: modulos || [],
+});
+
 
       if (res.ok) {
         alert("Curso atualizado com sucesso!");

@@ -50,7 +50,7 @@ export default function Register() {
         }
 
         try {
-            await axios.post('http://localhost:3000/register', {
+            await api.post('/register', {
                 ...rest,
                 Password
             });

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/Login.css';
-import axios from 'axios';
+import api from '../axiosConfig';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ export default function Login() {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/auth/check', {
+                const res = await api.get('/auth/check', {
                     withCredentials: true,
                 });
 
@@ -40,7 +40,7 @@ export default function Login() {
         setRecoveryError('');
 
         try {
-            const res = await axios.post('http://localhost:3000/login', {
+            const res = await api.post('/login', {
                 Email: email,
                 Password: password,
             }, {
@@ -78,7 +78,7 @@ export default function Login() {
 
         try {
             setLoadingRecovery(true);
-            await axios.post('http://localhost:3000/auth/request-password-reset', { email });
+            await axios.post('/auth/request-password-reset', { email });
             setRecoveryMessage('Email de recuperação enviado! Verifique sua caixa de entrada.');
         } catch (err) {
             setRecoveryError(err.response?.data?.message || 'Erro ao enviar email de recuperação.');
