@@ -76,7 +76,7 @@ export default function Login() {
 
         try {
             setLoadingRecovery(true);
-            await axios.post('/auth/request-password-reset', { email });
+            await api.post('/auth/request-password-reset', { email });
             setRecoveryMessage('Email de recuperação enviado! Verifique sua caixa de entrada.');
         } catch (err) {
             setRecoveryError(err.response?.data?.message || 'Erro ao enviar email de recuperação.');
