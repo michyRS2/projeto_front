@@ -11,7 +11,7 @@ import { FaBell, FaUser } from "react-icons/fa";
 import formandoService from "../../services/formandoService";
 import CursoCard from "../../components/CursoCard";
 import ForumCard from "../../components/ForumCard";
-import "../../styles/DashboardFormando.css";
+import "../../styles/dashboardFormando.css";
 import { Link } from 'react-router-dom';
 
 
