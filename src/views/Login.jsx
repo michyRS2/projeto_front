@@ -16,9 +16,7 @@ export default function Login() {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const res = await api.get('/auth/check', {
-                    withCredentials: true,
-                });
+                const res = await api.get('/auth/check');
 
                 const { role } = res.data.user;
 
