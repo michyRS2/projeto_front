@@ -6,7 +6,10 @@ export const loginUser = async (email, password) => {
   try {
     const response = await axios.post(
       `${API_URL}/login`,
-      { email, password },
+      {
+        Email: email,
+        Password: password
+      },
       { withCredentials: true }
     );
     return response.data;
