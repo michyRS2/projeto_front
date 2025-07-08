@@ -17,7 +17,6 @@ export default function Login() {
         const checkAuth = async () => {
             try {
                 const res = await api.get('/auth/check', {
-                    withCredentials: true,
                 });
 
                 const { role } = res.data.user;
@@ -43,8 +42,6 @@ export default function Login() {
             const res = await api.post('/login', {
                 Email: email,
                 Password: password,
-            }, {
-                withCredentials: true
             });
 
             const { token, user, role } = res.data;

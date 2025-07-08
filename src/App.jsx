@@ -31,18 +31,16 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await api.get("/auth/check", {
-          withCredentials: true,
-        });
-        if (res.status === 200) {
+        const res = await api.get("/auth/check");
+          
           setAuth({ isAuthenticated: true, role: res.data.user.role });
-        }
-      } catch {
-        setAuth({ isAuthenticated: false, role: null });
-      } finally {
-        setLoading(false);
+        
+      } catch(err){
+        setAuth({isAuthenticated:false});
       }
-    };
+      
+      };
+    
     checkAuth();
   }, []);
 
